@@ -52,6 +52,7 @@ Solution is based on Microsoft sample project
 License is included.
 
 COM component was successfully tested on Windows 7 64bit.
+A result is written to "Log.log" file in a current directory.
 
 Further Possible improvements:
 - Code optimization

@@ -41,7 +41,7 @@ public:
     IFACEMETHODIMP QueryContextMenu(HMENU hMenu, UINT indexMenu, UINT idCmdFirst, UINT idCmdLast, UINT uFlags);
     IFACEMETHODIMP InvokeCommand(LPCMINVOKECOMMANDINFO pici);
     IFACEMETHODIMP GetCommandString(UINT_PTR idCommand, UINT uFlags, UINT *pwReserved, LPSTR pszName, UINT cchMax);
-	
+    
     FileContextMenuExt(void);
 
 protected:
@@ -63,6 +63,6 @@ private:
     PCSTR m_pszVerbHelpText;
     PCWSTR m_pwszVerbHelpText;
 
-	// Handles all file info operations.
-	FileHandler m_fileHandler;
+    // Handles all fileinfo operations.
+    FileHandler m_fileHandler;
 };

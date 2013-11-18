@@ -69,13 +69,19 @@ FileContextMenuExt::~FileContextMenuExt(void)
     InterlockedDecrement(&g_cDllRef);
 }
 
-
 void FileContextMenuExt::OnVerbDisplayFileName(HWND hWnd)
 {
-	if (m_fileHandler.GetNumFiles() > 0)
-	{
-		m_fileHandler.WriteLogFile();
-	}
+    if (m_fileHandler.GetNumFiles() > 0)
+    {
+        m_fileHandler.WriteLogFile();
+        wchar_t szMessage[300];
+        const std::wstring logpath = m_fileHandler.GetLogFullPath();
+        if (SUCCEEDED(StringCchPrintf(szMessage, ARRAYSIZE(szMessage), 
+            L"Checksums were written to %s", logpath.c_str())))
+        {
+            MessageBox(hWnd, szMessage, L"CppShellExtContextMenuHandler", MB_OK);
+        }
+    }
 }
 
 #pragma region IUnknown
@@ -139,18 +145,18 @@ IFACEMETHODIMP FileContextMenuExt::Initialize(
         if (hDrop != NULL)
         {
             UINT nFiles = DragQueryFile(hDrop, 0xFFFFFFFF, NULL, 0);
-			if (nFiles > 0)
-			{
-				wchar_t filePath[MAX_PATH];;
-				for (UINT i = 0; i < nFiles; ++i)
-				{
-					if (DragQueryFile(hDrop, i, filePath, ARRAYSIZE(filePath)))
-					{
-						m_fileHandler.AddFileName(filePath);
-					}
-				}
-				hr = S_OK;
-			}
+            if (nFiles > 0)
+            {
+                wchar_t filePath[MAX_PATH];;
+                for (UINT i = 0; i < nFiles; ++i)
+                {
+                    if (DragQueryFile(hDrop, i, filePath, ARRAYSIZE(filePath)))
+                    {
+                        m_fileHandler.AddFileName(filePath);
+                    }
+                }
+                hr = S_OK;
+            }
             GlobalUnlock(stm.hGlobal);
         }
 
