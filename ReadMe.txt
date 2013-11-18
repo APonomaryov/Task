@@ -46,7 +46,17 @@ Summary:
 
 The code sample demonstrates creating a Shell context menu handler with C++. 
 A context menu handler is a shell extension handler that adds commands to an 
-existing context menu. 
+existing context menu.
+Solution is based on Microsoft sample project
+(http://code.msdn.microsoft.com/CppShellExtContextMenuHandl-410a709a).
+License is included.
+
+COM component was successfully tested on Windows 7 64bit.
+
+Further Possible improvements:
+- Code optimization
+- Unit test coverage
+- Fixing some bugs with mixed Russian/Ukranian symbols in filepaths.
 
 
 /////////////////////////////////////////////////////////////////////////////
