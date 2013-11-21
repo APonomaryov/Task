@@ -1,6 +1,8 @@
 =============================================================================
     			Test exercise: Shell extension
 =============================================================================
+Allotted time for the exercise: 4 hours.
+
 Solution for this task should be a COM component that is ready for 64-bit. Use MS Visual Studio 2008/2010/2012 (it can be Express Edition).
 
 Main requirements:
@@ -49,10 +51,11 @@ A context menu handler is a shell extension handler that adds commands to an
 existing context menu.
 Solution is based on Microsoft sample project
 (http://code.msdn.microsoft.com/CppShellExtContextMenuHandl-410a709a).
-License is included.
+A license is included. 
 
+The task was implemented using Visual Studio 2012 Express Edition.
 COM component was successfully tested on Windows 7 64bit.
-A result is written to "Log.log" file in a current directory.
+A result of calculations is written to "Log.log" file in a current directory.
 
 Further Possible improvements:
 - Code optimization
@@ -98,17 +101,7 @@ box saying:
 /////////////////////////////////////////////////////////////////////////////
 Implementation:
 
-A. Creating and configuring the project
-
-In Visual Studio 2010, create a Visual C++ / Win32 / Win32 Project named 
-"CppShellExtContextMenuHandler". In the "Application Settings" page of Win32 
-Application Wizard, select the application type as "DLL" and check the "Empty 
-project" option. After you click the Finish button, an empty Win32 DLL 
-project is created.
-
------------------------------------------------------------------------------
-
-B. Implementing a basic Component Object Model (COM) DLL
+A. Implementing a basic Component Object Model (COM) DLL
 
 Shell extension handlers are all in-process COM objects implemented as DLLs. 
 Making a basic COM includes implementing DllGetClassObject, DllCanUnloadNow, 
@@ -138,7 +131,7 @@ in this code sample are:
 
 -----------------------------------------------------------------------------
 
-C. Implementing the context menu handler 
+B. Implementing the context menu handler 
 -----------
 Implementing the context menu handler:
 
@@ -172,7 +165,7 @@ the context menu.
   other than S_OK is returned from IShellExtInit::Initialize, the context 
   menu extension will not be used.
 
-  In the code sample, the FileContextMenuExt::Initialize method enumerates 
+  In the code, the FileContextMenuExt::Initialize method enumerates 
   the selected files and folders.
 
   2. Implementing IContextMenu
@@ -196,11 +189,7 @@ the context menu.
   menu item, such as help text to be displayed for the menu item. If a user 
   highlights one of the items added by the context menu handler, the handler's 
   IContextMenu::GetCommandString method is called to request a Help text 
-  string that will be displayed on the Windows Explorer status bar. This 
-  method can also be called to request the verb string that is assigned to a 
-  command. Either ANSI or Unicode verb strings can be requested. This example 
-  only implements support for the Unicode values of uFlags, because only 
-  those have been used in Windows Explorer since Windows 2000.
+  string that will be displayed on the Windows Explorer status bar.
 
   IContextMenu::InvokeCommand is called when one of the menu items installed 
   by the context menu extension is selected. The context menu performs or 
@@ -233,6 +222,3 @@ http://www.codeproject.com/KB/shell/shellextguide7.aspx
 
 How to Use Submenus in a Context Menu Shell Extension
 http://www.codeproject.com/KB/shell/ctxextsubmenu.aspx
-
-
-/////////////////////////////////////////////////////////////////////////////
